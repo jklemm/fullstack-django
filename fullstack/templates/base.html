@@ -5,9 +5,17 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <h1>My site</h1>
+    <h1>Django Website</h1>
     <a href="{% url 'home' %}">Home</a> /
-    <a href="{% url 'signup' %}">Sign Up</a>
+    {%  if user.is_authenticated %}
+        <a href="{% url 'confidential' %}">Confidential Docs</a> /
+        <a href="{% url 'password_change' %}">Change Password</a> /
+        <a href="{% url 'logout' %}">Log Out</a> /
+        <i>You are logged in as {{ user.username }}</i>
+    {% else %}
+        <a href="{% url 'signup' %}">Sign Up</a> /
+        <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
     <hr>
     {% block content %}
     {% endblock %}
