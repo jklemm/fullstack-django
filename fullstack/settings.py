@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'fullstack.core'
+    'fullstack.authentication'
 ]
 
 MIDDLEWARE = [
@@ -57,7 +57,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'fullstack/templates')
+            os.path.join(BASE_DIR, 'fullstack/templates'),
+            os.path.join(BASE_DIR, 'fullstack/authentication/templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {

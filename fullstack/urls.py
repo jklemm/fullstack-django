@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from fullstack.core import views
+from fullstack.authentication import views
 
 urlpatterns = [
     path('', views.home, name='home'),
