@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'fullstack.authentication',
     'fullstack.upload',
+    'fullstack.core',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -62,7 +63,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'fullstack/templates'),
-            os.path.join(BASE_DIR, 'fullstack/authentication/templates')
+            os.path.join(BASE_DIR, 'fullstack/authentication/templates'),
+            os.path.join(BASE_DIR, 'fullstack/core/templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -112,9 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 

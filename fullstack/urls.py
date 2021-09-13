@@ -24,9 +24,9 @@ from fullstack.authentication import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('signup/', views.signup, name='signup'),
-    path('confidential/', views.confidential_page, name='confidential'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('upload/', include('fullstack.upload.urls')),
+    path('contract/', include('fullstack.core.urls')),
     path('admin/', admin.site.urls),
 ]
 

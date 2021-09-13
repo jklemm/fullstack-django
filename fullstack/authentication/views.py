@@ -1,7 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -24,8 +23,3 @@ def signup(request):
     return render(request, 'registration/signup.html', {
         'form': form
     })
-
-
-@login_required  # decorator que exige login para acessar determinada url
-def confidential_page(request):
-    return render(request, 'confidential.html')

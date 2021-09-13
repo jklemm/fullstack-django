@@ -1,15 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.core.files.storage import FileSystemStorage
+
+from fullstack.core.forms import ContractForm
 
 
 @login_required  # decorator que exige login para acessar determinada url
 def upload(request):
-    context = {}
-    if request.method == 'POST':  # upload sempre são feitos por POST
-        uploaded_file = request.FILES['document']
-        fs = FileSystemStorage()
-        name = fs.save(uploaded_file.name, uploaded_file)
-        context['url'] = fs.url(name)
-    return render(request, 'upload.html', context)
-
+    if request.method == 'POST':
+        form = ContractForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('contract')
+    else:
+        form = ContractForm()
+    return render(request, 'upload.html', {
+        'form': form
+    })

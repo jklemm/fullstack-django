@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-8">
+        <h2>Contratos</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Alugado em</th>
+                    <th>Valor</th>
+                    <th>Contrato</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contract in contracts %}
+                    <tr>
+                        <td>{{ contract.rented_at }}</td>
+                        <td>R$ {{ contract.residence_value }}</td>
+                        <td>
+                            <a href="{{ contract.contract.url }}" class="btn btn-primary btn-sm" target="_blank">
+                                Download PDF
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+{% endblock %}

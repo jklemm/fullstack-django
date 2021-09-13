@@ -1,21 +1,17 @@
 {% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+{% load crispy_forms_tags %}
 
 {% block content %}
     <div class="row justify-content-center">
         <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    <h2>Upload</h2>
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <input type="file" name="document" class="btn btn-light">
-                        <button type="submit" class="btn btn-primary">Upload file</button>
-                    </form>
-                    {% if url %}
-                        <p>Uploaded file: <a href="{{ url }}">{{ url }}</a></p>
-                    {% endif %}
-                </div>
-            </div>
+            <h2 >Adicionar Contrato</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary mt-4">Salvar</button>
+            </form>
         </div>
     </div>
 {% endblock %}
