@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'fullstack.authentication',
+    'fullstack.upload',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -133,3 +134,7 @@ LOGOUT_REDIRECT_URL = 'login'
 
 # Console email backend
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# media relacionada ao upload
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
