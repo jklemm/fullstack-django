@@ -7,9 +7,4 @@ from fullstack.core.models import Contract
 # def residence_list:
 
 
-@login_required
-def contract_list(request):
-    contracts = Contract.objects.all()
-    return render(request, 'contracts.html', {
-        'contracts': contracts
-    })
+

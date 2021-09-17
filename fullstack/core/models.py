@@ -23,3 +23,7 @@ class Contract(models.Model):
     rented_at = models.DateField()
     closed_at = models.DateField(null=True)
     updated_at = models.DateField(null=True)
+
+    def delete(self, *args, **kwargs):
+        self.contract.delete()
+        super().delete(args, **kwargs)

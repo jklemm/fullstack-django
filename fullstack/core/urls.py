@@ -1,7 +1,5 @@
 from django.urls import path
 
-from fullstack.core import views
+from fullstack.upload import views
 
-urlpatterns = [
-    path('', views.contract_list, name='contract'),
-]
+urlpatterns = []
