@@ -3,15 +3,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Residence(models.Model):
+class Room(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
     value = models.DecimalField(max_digits=10, decimal_places=2)
     available = models.BooleanField()
 
 
-class ResidenceImage(models.Model):
-    residence = models.ForeignKey(Residence, on_delete=models.DO_NOTHING)
+class RoomImage(models.Model):
+    room = models.ForeignKey(Room, on_delete=models.DO_NOTHING)
     image = models.ImageField()
 
 

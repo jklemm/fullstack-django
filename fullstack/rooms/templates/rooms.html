@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-8">
+        <h2>Apartamentos</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Disponibilidade</th>
+                    <th>Remover</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for room in rooms %}
+                    <tr>
+                        <td>{{ room.name }}</td>
+                        <td>{{ room.description }}</td>
+                        <td>R$ {{ room.value }}</td>
+                        <td>{{ room.available }}</td>
+                        <td>
+                            <div class="justify-content-center">
+                                <form method="post" action="{% url 'delete_room' room.pk %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm">X</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+{% endblock %}

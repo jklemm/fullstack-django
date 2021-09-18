@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'fullstack.authentication',
     'fullstack.upload',
     'fullstack.core',
+    'fullstack.rooms',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
