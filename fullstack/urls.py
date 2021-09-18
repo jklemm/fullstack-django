@@ -25,7 +25,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('signup/', views.signup, name='signup'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('contract/', include('fullstack.upload.urls')),
+    path('contract/', include('fullstack.contracts.urls')),
     path('rooms/', include('fullstack.rooms.urls')),
     path('admin/', admin.site.urls),
 ]

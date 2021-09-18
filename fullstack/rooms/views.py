@@ -20,11 +20,11 @@ class AddRoomView(View):
 
     @method_decorator(login_required)
     def post(self, request):
-        form = self.room_form(request.POST)
+        form = self.room_form(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('list')
-        return render(request, self.room_template, {'form': form})
+        return render(request, self.room_template, {'form': {form}})
 
 
 class ListRoomsView(View):

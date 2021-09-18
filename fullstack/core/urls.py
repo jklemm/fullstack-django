@@ -1,5 +1,5 @@
-from django.urls import path
+# from django.urls import path
 
-from fullstack.upload import views
+# from fullstack.contracts import views
 
-urlpatterns = []
+# urlpatterns = []

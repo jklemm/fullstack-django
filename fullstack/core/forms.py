@@ -11,4 +11,4 @@ class ContractForm(forms.ModelForm):
 class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ('name', 'description', 'value','available')
+        fields = ('name', 'description', 'value','available', 'image_1', 'image_2', 'image_3')

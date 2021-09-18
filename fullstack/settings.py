@@ -40,8 +40,8 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'fullstack.authentication',
-    'fullstack.upload',
     'fullstack.core',
+    'fullstack.contracts',
     'fullstack.rooms',
 ]
 

@@ -10,7 +10,7 @@ from fullstack.core.models import Contract
 
 class AddContractView(View):
     contract_form = ContractForm
-    contract_template = 'upload_form.html'
+    contract_template = 'upload_contract.html'
 
     @method_decorator(login_required)
     def get(self, request):
