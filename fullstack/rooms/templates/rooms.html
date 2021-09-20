@@ -11,7 +11,7 @@
                     <th>Descrição</th>
                     <th>Valor</th>
                     <th>Disponibilidade</th>
-                    <th>Fotos</th>
+                    <!-- <th>Fotos</th> -->
                     <th>Remover</th>
                 </tr>
             </thead>
@@ -22,7 +22,7 @@
                         <td>{{ room.description }}</td>
                         <td>R$ {{ room.value }}</td>
                         <td>{{ room.available }}</td>
-                        <td>{{ room.image_1}}, {{ room.image_2}}, {{room.image_3}}</td>
+                        <!-- <td>{{ room.image_1}}, {{ room.image_2}}, {{room.image_3}}</td> -->
                         <td>
                             <div class="justify-content-center">
                                 <form method="post" action="{% url 'delete_room' room.pk %}">

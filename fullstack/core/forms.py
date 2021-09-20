@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Contract, Room
+from .models import Contract, Room, RoomImage
 
 
 class ContractForm(forms.ModelForm):
@@ -11,4 +11,9 @@ class ContractForm(forms.ModelForm):
 class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ('name', 'description', 'value','available', 'image_1', 'image_2', 'image_3')
+        fields = ('name', 'description', 'value','available')
+
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = RoomImage
+        fields = ('image',)
