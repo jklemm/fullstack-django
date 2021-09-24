@@ -16,7 +16,7 @@ class RoomForm(forms.Form):
     Moradia = forms.CharField()
     Descricao = forms.CharField(widget=forms.Textarea)
     Valor = forms.IntegerField()
-    Disponibilidade = forms.BooleanField()
+    Disponibilidade = forms.BooleanField(initial=False, required=False)
 
 
 class ImageForm(forms.Form):

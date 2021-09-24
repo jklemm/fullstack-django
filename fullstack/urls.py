@@ -27,6 +27,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('contract/', include('fullstack.contracts.urls')),
     path('rooms/', include('fullstack.rooms.urls')),
+    path('payments/', include('fullstack.payments.urls')),
     path('admin/', admin.site.urls),
 ]
 

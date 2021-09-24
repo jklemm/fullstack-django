@@ -1,4 +1,3 @@
-from fullstack.core.forms import RoomForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -58,3 +57,11 @@ class DeleteRoomView(View):
         room = self.rooms_list.objects.get(pk=pk)
         room.delete()
         return redirect('room')
+
+
+class SeeDetailsView(View):
+    rooms_list = Room
+
+    def get(self, request, pk):
+        room = self.rooms_list.objects.get(pk=pk)
+        return render(request, 'details.html', {'room': room})

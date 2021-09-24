@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'fullstack.core',
     'fullstack.contracts',
     'fullstack.rooms',
+    'fullstack.payments'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -65,7 +66,10 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'fullstack/templates'),
             os.path.join(BASE_DIR, 'fullstack/authentication/templates'),
-            os.path.join(BASE_DIR, 'fullstack/core/templates')
+            os.path.join(BASE_DIR, 'fullstack/core/templates'),
+            os.path.join(BASE_DIR, 'fullstack/rooms/templates'),
+            os.path.join(BASE_DIR, 'fullstack/contracts/templates'),
+            os.path.join(BASE_DIR, 'fullstack/payments/templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {

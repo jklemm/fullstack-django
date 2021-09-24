@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="d-flex flex-column align-items-center">
+        <p>Bem vindo(a) {% if user.is_authenticated %}{{ user.username }}{% else %}visitante{% endif %}!</p>
+        <h3>Veja as opções de moradias:</h3>
+    </div>
+    <div class="d-flex flex-row flex-wrap">
+        <div class="card-group">
+            {% for room in rooms %}
+                <div class="card" style="width: 18rem; margin: 10px">
+                    {% for image in images %}
+                        {% if room.id == image.room_id %}
+                            <img src="{{ image.image.url }}" class="card-img-top"  alt="room">
+                        {% endif %}
+                    {% endfor %}
+                    <div class="card-body">
+                        <div class="d-flex flex-row">
+                        <h5 class="card-title">{{ room.name }} -
+                            {% if room.available %}
+                                <span class="text-success">Disponível</span>
+                            {% else %}
+                                <span class="text-danger">Indisponível</span>
+                            {% endif %}
+                        </h5>
+                    </div>
+                        <p class="card-text">{{ room.description|truncatechars:100 }}</p>
+                        <a href="/rooms/{{ room.id }}/details" class="btn btn-primary">Ver detalhes</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
