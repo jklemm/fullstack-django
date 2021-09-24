@@ -21,7 +21,13 @@ class AddContractView(View):
     def post(self, request):
         form = self.contract_form(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            Contract.objects.create(
+                user_id=form.cleaned_data['Inquilino'],
+                room_id=form.cleaned_data['Moradia'],
+                residence_value=form.cleaned_data['Valor_aluguel'],
+                rented_at=form.cleaned_data['Alugado_em'],
+                contract=form.cleaned_data['Contrato_PDF']
+            )
             return HttpResponseRedirect('list')
         return render(request, self.contract_template, {'form': form})
 
@@ -32,7 +38,7 @@ class ListContractView(View):
 
     @method_decorator(login_required)
     def get(self, request):
-        list_all_contracts = self.contract_list.objects.all()
+        list_all_contracts = self.contract_list.objects.select_related('user', 'room').all()
         return render(request, self.contract_template, {'contracts': list_all_contracts})
 
 

@@ -7,6 +7,8 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>Usuário</th>
+                    <th>Quarto</th>
                     <th>Alugado em</th>
                     <th>Valor</th>
                     <th>Contrato</th>
@@ -16,6 +18,8 @@
             <tbody>
                 {% for contract in contracts %}
                     <tr>
+                        <td>{{ contract.user.username }}</td>
+                        <td>{{ contract.room.name }}</td>
                         <td>{{ contract.rented_at }}</td>
                         <td>R$ {{ contract.residence_value }}</td>
                         <td>

@@ -27,3 +27,7 @@ Administrador
 - Desenhar telas do frontend
 - Iniciar testes
 
+### BUGS
+
+- Ao deletar moradias não deleta as imagens
+- Erros não tratados quando tendo deletar uma moradia com contrato vinculado

@@ -17,29 +17,37 @@ class AddRoomView(View):
     @method_decorator(login_required)
     def get(self, request):
         form = self.room_form()
-        return render(request, self.room_template, {'form': form, 'image_form': self.image_form})
+        return render(request, self.room_template, {'form': form, 'image': self.image_form})
 
     @method_decorator(login_required)
     def post(self, request):
-        form = self.room_form(request.POST, request.FILES)
+        form = self.room_form(request.POST)
         image_form = self.image_form(request.POST, request.FILES)
-        if form.is_valid():
-            room_form = form.save()
-            image_form.save()
-            image = RoomImage.objects.get(id=id)
-            room_form.image.add(image)
+        if form.is_valid() and image_form.is_valid():
+            room = Room.objects.create(
+                name=form.cleaned_data['Moradia'],
+                description=form.cleaned_data['Descricao'],
+                value=form.cleaned_data['Valor'],
+                available=form.cleaned_data['Disponibilidade'],
+            )
+            RoomImage.objects.create(
+                room=room,
+                image=image_form.cleaned_data['image']
+            )
             return HttpResponseRedirect('list')
-        return render(request, self.room_template, {'form': {form}, 'image_form': {image_form}})
+        return render(request, self.room_template, {'form': form, 'image': image_form})
 
 
 class ListRoomsView(View):
     rooms_list = Room
+    images_list = RoomImage
     rooms_template = 'rooms.html'
 
     @method_decorator(login_required)
     def get(self, request):
         list_all_rooms = self.rooms_list.objects.all()
-        return render(request, self.rooms_template, {'rooms': list_all_rooms})
+        list_all_images = self.images_list.objects.all()
+        return render(request, self.rooms_template, {'rooms': list_all_rooms, 'images': list_all_images})
 
 
 class DeleteRoomView(View):
