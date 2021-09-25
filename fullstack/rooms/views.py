@@ -46,7 +46,19 @@ class ListRoomsView(View):
     def get(self, request):
         list_all_rooms = self.rooms_list.objects.all()
         list_all_images = self.images_list.objects.all()
-        return render(request, self.rooms_template, {'rooms': list_all_rooms, 'images': list_all_images})
+        return render(
+            request, self.rooms_template, {'rooms': list_all_rooms, 'images': list_all_images}
+        )
+
+
+class SeeDetailsView(View):
+    rooms_list = Room
+    images_list = RoomImage
+
+    def get(self, request, pk):
+        room = self.rooms_list.objects.get(pk=pk)
+        image = self.images_list.objects.get(pk=room.id)
+        return render(request, 'details.html', {'room': room, 'image': image})
 
 
 class DeleteRoomView(View):
@@ -60,11 +72,3 @@ class DeleteRoomView(View):
         images.delete()
         room.delete()
         return redirect('room')
-
-
-class SeeDetailsView(View):
-    rooms_list = Room
-
-    def get(self, request, pk):
-        room = self.rooms_list.objects.get(pk=pk)
-        return render(request, 'details.html', {'room': room})
