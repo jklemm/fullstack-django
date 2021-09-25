@@ -51,10 +51,13 @@ class ListRoomsView(View):
 
 class DeleteRoomView(View):
     rooms_list = Room
+    rooms_images = RoomImage
 
     @method_decorator(login_required)
     def post(self, request, pk):
         room = self.rooms_list.objects.get(pk=pk)
+        images = self.rooms_images.objects.get(pk=pk)
+        images.delete()
         room.delete()
         return redirect('room')
 

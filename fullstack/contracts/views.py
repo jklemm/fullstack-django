@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
+from django.contrib.auth.models import User
 
 from fullstack.core.forms import ContractForm
 from fullstack.core.models import Contract
@@ -38,8 +39,13 @@ class ListContractView(View):
 
     @method_decorator(login_required)
     def get(self, request):
+        user = request.user
         list_all_contracts = self.contract_list.objects.select_related('user', 'room').all()
-        return render(request, self.contract_template, {'contracts': list_all_contracts})
+        list_only_user_contract = self.contract_list.objects.filter(user_id=user.id)
+        if user.is_staff:
+            return render(request, self.contract_template, {'contracts': list_all_contracts})
+        else:
+            return render(request, self.contract_template, {'contracts': list_only_user_contract})
 
 
 class DeleteContractView(View):

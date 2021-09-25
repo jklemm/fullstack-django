@@ -29,7 +29,7 @@ Administrador
 
 ### BUGS
 
-- Ao deletar moradias não deleta as imagens
-- Erros não tratados quando tendo deletar uma moradia com contrato vinculado
-- Tamanhos dos cards da homepage
-- Vinculação de contrato por usuário
+-[x] Ao deletar moradias não deleta as imagens  
+-[ ] Erros não tratados quando tendo deletar uma moradia com contrato vinculado  
+-[ ] Tamanhos dos cards da homepage  
+-[x] Vinculação de contrato por usuário  

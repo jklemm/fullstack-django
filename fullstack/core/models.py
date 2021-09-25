@@ -13,11 +13,11 @@ class Room(models.Model):
 
 
 class RoomImage(models.Model):
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, null=True)
+    room = models.ForeignKey(Room, on_delete=models.DO_NOTHING, null=True)
     image = models.ImageField(upload_to='images/', blank=True, null=False)
 
     def delete(self, *args, **kwargs):
-        self.room.delete()
+        self.image.delete()
         super().delete(args, **kwargs)
 
 

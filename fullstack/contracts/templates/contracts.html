@@ -18,21 +18,27 @@
         </div>
         </nav>
         <table class="table">
-
             <thead>
                 <tr>
-                    <th>Usuário</th>
+                    {% if user.is_staff %}
+                        <th>Usuário</th>
+                    {% endif %}
                     <th>Quarto</th>
                     <th>Alugado em</th>
                     <th>Valor</th>
                     <th>Contrato</th>
-                    <th>Remover</th>
+                    {% if user.is_staff %}
+                        <th>Remover</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
                 {% for contract in contracts %}
                     <tr>
-                        <td>{{ contract.user.username }}</td>
+                        {% if user.is_staff %}
+                            <td>{{ contract.user.username }}</td>
+                        {% endif %}
+
                         <td>{{ contract.room.name }}</td>
                         <td>{{ contract.rented_at }}</td>
                         <td>R$ {{ contract.residence_value }}</td>
@@ -41,14 +47,16 @@
                                 Download PDF
                             </a>
                         </td>
-                        <td>
-                            <div class="justify-content-center">
-                                <form method="post" action="{% url 'delete_contract' contract.pk %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger btn-sm">X</button>
-                                </form>
-                            </div>
-                        </td>
+                        {% if user.is_staff %}
+                            <td>
+                                <div class="justify-content-center">
+                                    <form method="post" action="{% url 'delete_contract' contract.pk %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger btn-sm">X</button>
+                                    </form>
+                                </div>
+                            </td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>
