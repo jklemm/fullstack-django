@@ -34,7 +34,16 @@
                         <td>{{ room.name }}</td>
                         <td>{{ room.description }}</td>
                         <td>R$ {{ room.value }}</td>
-                        <td>{{ room.available }}</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <label class="form-check-label" for="flexSwitchCheckChecked">
+                                    <span class="label_available" style="color: {% if room.available %}green{% else %}red{% endif %}">
+                                        {% if room.available %}Disponível{% else %}Indisponível{% endif %}
+                                    </span>
+                                    <input class="form-check-input checkbox_available" type="checkbox" data-room-pk="{{ room.id }}" {% if room.available %}checked{% endif %}>
+                                </label>
+                            </div>
+                        </td>
                         <td>
                         {% for image in images %}
                             {% if room.id == image.room_id %}
@@ -56,4 +65,25 @@
         </table>
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $('.checkbox_available').on('change', function() {
+            const checked = $(this).prop('checked');
+            const roomPk = $(this).data('room-pk');
+            $.ajax(
+                "{% url 'room-availability' %}",
+                {
+                    method: 'post',
+                    headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                    data: JSON.stringify({checked, roomPk}),
+                    dataType: 'application/json'
+                }
+            );
+            const label = $(this).parent().find('.label_available');
+            label.html(checked ? 'Disponível' : 'Indisponível');
+            label.css({'color': checked ? 'green' : 'red'});
+        })
+    </script>
 {% endblock %}
