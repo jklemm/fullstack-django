@@ -7,6 +7,7 @@ class Room(models.Model):
     description = models.TextField(max_length=1000, null=False)
     value = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     available = models.BooleanField(null=False, default=False)
+    active = models.BooleanField(null=False, default=True)
 
     def __str__(self):
         return self.name
@@ -29,7 +30,4 @@ class Contract(models.Model):
     rented_at = models.DateField(null=False)
     closed_at = models.DateField(null=True)
     updated_at = models.DateField(null=True)
-
-    def delete(self, *args, **kwargs):
-        self.contract.delete()
-        super().delete(args, **kwargs)
+    active = models.BooleanField(null=False, default=True)
