@@ -96,6 +96,13 @@ DATABASES = {
     }
 }
 
+# Storage
+# https://docs.djangoproject.com/en/2.0/ref/settings/#default-file-storage
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+# DROPBOX_OAUTH2_TOKEN = 'TOKEN_OAUTH2_DROPBOX'
+# DROPBOX_ROOT_PATH = '/'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
