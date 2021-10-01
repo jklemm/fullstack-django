@@ -1,5 +1,7 @@
+import json
+
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -49,6 +51,16 @@ class ListRoomsView(View):
         return render(
             request, self.rooms_template, {'rooms': list_all_rooms, 'images': list_all_images}
         )
+
+
+class ToggleRoomAvailability(View):
+    @method_decorator(login_required)
+    def post(self, request):
+        dados = json.loads(request.body.decode())
+        room_id = dados['roomPk']
+        available = dados['checked']
+        Room.objects.filter(id=room_id).update(available=available)
+        return HttpResponse()
 
 
 class SeeDetailsView(View):

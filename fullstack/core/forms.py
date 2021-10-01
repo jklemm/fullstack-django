@@ -5,8 +5,8 @@ from fullstack.core.models import Room
 
 
 class ContractForm(forms.Form):
-    Inquilino = forms.ChoiceField(choices=[(u.id, u.username) for u in User.objects.all()])
-    Moradia = forms.ChoiceField(choices=[(r.id, r.name) for r in Room.objects.all()])
+    Inquilino = forms.ModelChoiceField(queryset=User.objects.all())
+    Moradia = forms.ModelChoiceField(queryset=Room.objects.all())
     Valor_aluguel = forms.IntegerField()
     Alugado_em = forms.DateField()
     Contrato_PDF = forms.FileField()
